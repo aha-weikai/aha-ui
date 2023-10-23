@@ -5,9 +5,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm -C play dev"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@aha-ui/components": "workspace:^",
+    "@aha-ui/theme-chalk": "workspace:^",
+    "@aha-ui/utils": "workspace:^",
+    "@types/node": "^20.8.7",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.6"
+  }
 }
