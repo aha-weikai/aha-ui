@@ -1,12 +1,13 @@
 # EditorConfig is awesome: https://EditorConfig.org
 
 # top-most EditorConfig file
-root = true
+root = true # 表示是最顶层的配置文件，设为 true 时，停止向上查找
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = crlf
-charset = utf-8
-trim_trailing_whitespace = false
-insert_final_newline = false
+charset = utf-8 # 设置编码
+indent_style = space # 设置缩进为 tab 或 space
+indent_size = 2 # 设置缩进所占列数，如果 indent_style 为 tab，则以 tab_width 值作为缩进宽度
+end_of_line = lf # 设置换行符，值为 lf(换行)、cr(回车) 和 crlf(回车换行)
+insert_final_newline = true # 设为 true 表示使文件以一个空白行结尾
+trim_trailing_whitespace = true # 设为 true 表示会去除行尾的空白字符
+quote_type = single # 使用单引号 single 或者双引号 double
