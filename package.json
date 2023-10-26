@@ -12,6 +12,9 @@
     "typecheck": "run-p typecheck:web typecheck:play typecheck:node typecheck:vitest",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": "eslint --fix"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
