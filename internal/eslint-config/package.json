@@ -1,8 +1,11 @@
 {
-  "name": "eslint-config",
+  "name": "@aha-ui/eslint-config",
   "version": "1.0.0",
-  "description": "",
+  "description": "eslint-config",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +19,15 @@
     "eslint-define-config": "^1.24.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsonc": "^2.10.0"
+    "eslint-plugin-jsonc": "^2.10.0",
+    "eslint-plugin-markdown": "^3.0.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "jsonc-eslint-parser": "^2.4.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.2.2",
+    "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "^8.52.0"
