@@ -1,8 +1,20 @@
 import { computed, unref } from 'vue'
 
-// 默认命名前缀
+/**
+ * ## 命名前缀也就是命名空间
+ * @default "el"
+ */
 export const defaultNameSpace = 'el'
 
+/**
+ * ## BEM 命名字符拼接函数
+ * @param namespace 命名空间
+ * @param block
+ * @param blockSuffix
+ * @param element
+ * @param modifier
+ * @returns
+ */
 const _bem = (
   namespace: string,
   block: string,
@@ -61,7 +73,57 @@ export const useNamespace = (block: string) => {
       ? _bem(unref(namespace), block, blockSuffix, element, '')
       : ''
 
+  /**
+   * ## 创建元素修改器 例如：el-scrollbar_wrap--hidden-default
+   */
+  const em = (element?: string, modifier?: string) =>
+    element && modifier
+      ? _bem(unref(namespace), block, '', element, modifier)
+      : ''
+
+  /**
+   * ## 创建块后缀修改器 例如：el-form-item--default
+   */
+  const bm = (blockSuffix?: string, modifier?: string) =>
+    blockSuffix && modifier
+      ? _bem(unref(namespace), block, blockSuffix, '', modifier)
+      : ''
+
+  /**
+   * ## 创建块元素修改器 例如：el-form-item__content--xxx
+   * @param blockSuffix
+   * @param element
+   * @param modifier
+   * @returns
+   */
+  const bem = (blockSuffix?: string, element?: string, modifier?: string) =>
+    blockSuffix && element && modifier
+      ? _bem(unref(namespace), block, blockSuffix, element, modifier)
+      : ''
+
+  const statePrefix = 'is-'
+  /**
+   * ## 创建动作状态 例如： is-success is-required
+   * @param name 状态名称
+   * @param args [state=false]: 是否是状态，没有state参数时，默认为是
+   * @returns 完整的状态名称
+   */
+  const is: {
+    (name: string, state: boolean | undefined): string
+    (name: string): string
+  } = (name: string, ...args: [boolean | undefined] | []) => {
+    const state = args.length >= 1 ? args[0] : true
+    return name && state ? `${statePrefix}${name}` : ''
+  }
   return {
     namespace,
+    b,
+    e,
+    m,
+    be,
+    em,
+    bm,
+    bem,
+    is,
   }
 }
