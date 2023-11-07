@@ -9,11 +9,11 @@ export const defaultNameSpace = 'el'
 /**
  * ## BEM 命名字符拼接函数
  * @param namespace 命名空间
- * @param block
- * @param blockSuffix
- * @param element
- * @param modifier
- * @returns
+ * @param block 组件块
+ * @param blockSuffix 组件块里面还有组件块
+ * @param element 组件块内元素
+ * @param modifier 修改器，标识一些状态
+ * @returns BEM 规范的命名
  */
 const _bem = (
   namespace: string,
@@ -28,7 +28,7 @@ const _bem = (
   // 如果存在 Block 后缀，也就是 Block 里面还有 Block，
   // 例如：el-form 下面还有一个 el-form-item
   if (blockSuffix) {
-    cls += `__${element}`
+    cls += `-${blockSuffix}`
   }
   // 如果存在元素
   if (element) {
@@ -36,11 +36,16 @@ const _bem = (
   }
   // 如果存在修改器
   if (modifier) {
-    cls += `__${modifier}`
+    cls += `--${modifier}`
   }
   return cls
 }
 
+/**
+ * ## 创建一个命名空间的hook
+ * @param block 组件块
+ * @returns BEM 的工具函数
+ */
 export const useNamespace = (block: string) => {
   /**
    * ## 命名前缀也就是命名空间
@@ -48,7 +53,8 @@ export const useNamespace = (block: string) => {
   const namespace = computed(() => defaultNameSpace)
 
   /**
-   * ## 创建块 例如：el-form
+   * ## 创建块 例如：el-form，为了防止命名冲突，增加了后缀
+   * @description 如果有 后缀，则添加后缀
    */
   const b = (blockSuffix = '') =>
     _bem(unref(namespace), block, blockSuffix, '', '')
@@ -66,7 +72,7 @@ export const useNamespace = (block: string) => {
     modifier ? _bem(unref(namespace), block, '', '', modifier) : ''
 
   /**
-   * ## 创建后缀块元素 例如：el-form-item
+   * ## 创建后缀块元素 例如：el-form-item__input
    */
   const be = (blockSuffix?: string, element?: string) =>
     blockSuffix && element
@@ -74,7 +80,7 @@ export const useNamespace = (block: string) => {
       : ''
 
   /**
-   * ## 创建元素修改器 例如：el-scrollbar_wrap--hidden-default
+   * ## 创建元素修改器 例如：el-scrollbar__wrap--hidden-default
    */
   const em = (element?: string, modifier?: string) =>
     element && modifier
@@ -91,10 +97,6 @@ export const useNamespace = (block: string) => {
 
   /**
    * ## 创建块元素修改器 例如：el-form-item__content--xxx
-   * @param blockSuffix
-   * @param element
-   * @param modifier
-   * @returns
    */
   const bem = (blockSuffix?: string, element?: string, modifier?: string) =>
     blockSuffix && element && modifier
