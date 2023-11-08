@@ -1,12 +1,50 @@
 @use 'config';
 
-///
-/// @param {type} $selector -
-/// @return {type} -
+/// ## 将选择器转化为字符串，并截取指定位置的字符
+/// @param {String} $selector - 选择器
+/// @return {*} -
 @function selectorToString($selector) {
   $selector: inspect($selector);
 
   $selector: str-slice($selector, 2, -2);
 
   @return $selector;
+}
+
+/// ##
+/// @param {type} $selector - 选择器
+/// @return {type} -
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ',' + config.$state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($string: $selector, $substring: '.' + config.$state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($string: $selector, $substring: ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or
+    containPseudoClass($selector);
 }

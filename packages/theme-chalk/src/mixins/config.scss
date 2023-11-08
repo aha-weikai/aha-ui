@@ -1,5 +1,14 @@
-$namespace: 'el' !default; // 所有的组件以 el 开头，如 el-input
-$common-separator: '-' !default; // 公共的连接符
-$element-separator: '__' !default; // 元素以__ 分割，如 el-input__inner
-$modifier-separator: '--' !default; // 修饰符以 -- 分割，如 el-input--mini
-$state-prefix: 'is-' !default; // 状态以 is- 开头，如 is-disabled
+/// ## 所有的组件以 el 开头，如 el-input
+$namespace: 'el' !default;
+
+/// ## 公共的连接符
+$common-separator: '-' !default;
+
+/// ## 元素以__ 分割，如 el-input__inner
+$element-separator: '__' !default;
+
+/// ## 修饰符以 -- 分割，如 el-input--mini
+$modifier-separator: '--' !default;
+
+/// ## 状态以 is- 开头，如 is-disabled
+$state-prefix: 'is-' !default;
