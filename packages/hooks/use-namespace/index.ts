@@ -1,4 +1,18 @@
 import { computed, unref } from 'vue'
+/**
+ * OOCSS：Object Oriented CSS 面向对象的css
+ * 面向对象的特点：封装，继承，多态，上述主要用到了封装和继承
+ * BEM
+ * block-name[-blockSuffix]__<element-name>--<modifier-name>_<modifier_value>
+ * 例如：el-form-item__input--default
+ *
+ * 创建块 el-form、
+ * 创建元素 el-input__inner、
+ * 创建块修改器 el-form--default、
+ * 创建块后缀元素 el-form-item、
+ * 创建元素修改器 el-scrollbar__wrap--hidden-default、
+ * 创建动作状态 例如：is-success is-required
+ */
 
 /**
  * ## 命名前缀也就是命名空间
