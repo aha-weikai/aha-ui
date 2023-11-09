@@ -5,13 +5,11 @@
 /// @return {*} -
 @function selectorToString($selector) {
   $selector: inspect($selector);
-
   $selector: str-slice($selector, 2, -2);
-
   @return $selector;
 }
 
-/// ##
+/// ## 判断父级选择器是否包含 '--'
 /// @param {type} $selector - 选择器
 /// @return {type} -
 @function containsModifier($selector) {
@@ -24,6 +22,9 @@
   }
 }
 
+/// ## 判断腹肌选择是是否包含 '.is-'
+/// @param {type} $selector -
+/// @return {type} -
 @function containWhenFlag($selector) {
   $selector: selectorToString($selector);
 
@@ -34,6 +35,9 @@
   }
 }
 
+/// ## 判断父级是否包含 ':' (用于判断伪类和伪元素)
+/// @param {type} $selector -
+/// @return {type} -
 @function containPseudoClass($selector) {
   $selector: selectorToString($selector);
 
@@ -44,6 +48,9 @@
   }
 }
 
+/// ## 判断腹肌选择器是否包含 Modifier、表示状态的 .is- 和 伪类的了
+/// @param {type} $selector -
+/// @return {type} -
 @function hitAllSpecialNestRule($selector) {
   @return containsModifier($selector) or containWhenFlag($selector) or
     containPseudoClass($selector);

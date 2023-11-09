@@ -1,3 +1,7 @@
+@forward 'config';
+@forward 'function';
+@use 'config' as *;
+@use 'function' as *;
 /// ## 定义block
 /// @param {type} $block -
 /// @output -
