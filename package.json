@@ -22,6 +22,7 @@
     "@aha-ui/components": "workspace:^",
     "@aha-ui/theme-chalk": "workspace:^",
     "@aha-ui/utils": "workspace:^",
+    "@vueuse/core": "^10.6.0",
     "eslint": "^8.52.0",
     "prettier": "2",
     "typescript": "^5.2.2",

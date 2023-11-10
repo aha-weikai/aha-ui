@@ -6,3 +6,7 @@
     { "path": "./tsconfig.vitest.json" } // 组件测试部分
   ]
 }
+
+// reference : 支持将ts的程序项目分割成更小的组成部分，进而可以提高类型检查和编译的速度
+// 每个引用的path属性可以只想包含tsconfig.json文件的目录，也可以只想配置文件本身。
+// 每个tsconfig.json 下面有 include，用来表示为某个文件进行tsconfig的配置
