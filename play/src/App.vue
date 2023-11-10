@@ -1,7 +1,6 @@
 <template>
   <div>
-    测试按钮
-    <a-icon></a-icon>
+    <a-icon> 测试按钮</a-icon>
   </div>
 </template>
 
