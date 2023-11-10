@@ -1,14 +1,17 @@
-@forward 'config';
-@forward 'function';
+// @forward 'config';
+// @forward 'function';
 @use 'config' as *;
 @use 'function' as *;
+
 /// ## 定义block
-/// @param {type} $block -
+/// @param {type} $block - 块
 /// @output -
 @mixin b($block) {
   $B: $namespace + '-' + $block !global;
 
+  // #{$B} 类似于js中的模板字符串
   .#{$B} {
+    // 内容块，只能在mixin中使用，当 @include b(icon){ style }，style就是内容块
     @content;
   }
 }
@@ -30,6 +33,7 @@
   }
 
   @if hitAllSpecialNestRule($selector) {
+    // @at-root 限定输出在文档的根层级上，而不是被嵌套在其父选择器下
     @at-root {
       #{$selector} {
         #{$currentSelector} {
