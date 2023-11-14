@@ -9,6 +9,9 @@ import { useNamespace } from '@aha-ui/hooks'
 import { iconProps } from './icon'
 import { computed, type CSSProperties } from 'vue'
 import { addUnit, isUndefined } from '@aha-ui/utils'
+defineOptions({
+  name: 'ElIcon',
+})
 
 const bem = useNamespace('icon')
 
