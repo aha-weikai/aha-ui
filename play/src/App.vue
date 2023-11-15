@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-icon :color="'green'" :size="'18px'"> 测试按钮</el-icon>
+    <el-icon :size="'18px'" :color="'green'">
+      <span>测试按钮</span>
+    </el-icon>
   </div>
 </template>
 
