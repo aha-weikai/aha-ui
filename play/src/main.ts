@@ -2,8 +2,9 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import ElIcon from '@aha-ui/components/icon'
+import ElButton from '@aha-ui/components/button'
 
-const components = [ElIcon]
+const components = [ElIcon, ElButton]
 
 const INSTALLED_KEY = Symbol('INSTALLED_KEY')
 
