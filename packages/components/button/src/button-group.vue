@@ -7,13 +7,22 @@
 
 <script setup lang="ts">
 import { useNamespace } from '@aha-ui/hooks'
+import { buttonGroupContextKey } from '@aha-ui/tokens'
+import { provide, reactive, toRef } from 'vue'
 import { buttonGroupProps } from './button-group'
 
 defineOptions({
   name: 'ElButtonGroup',
 })
 
-defineProps(buttonGroupProps)
+const props = defineProps(buttonGroupProps)
+provide(
+  buttonGroupContextKey,
+  reactive({
+    size: toRef(props, 'size'),
+    type: toRef(props, 'type'),
+  })
+)
 
 const ns = useNamespace('button')
 </script>

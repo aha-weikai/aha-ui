@@ -21,7 +21,9 @@
   "dependencies": {
     "@aha-ui/components": "workspace:^",
     "@aha-ui/theme-chalk": "workspace:^",
+    "@aha-ui/tokens": "workspace:^",
     "@aha-ui/utils": "workspace:^",
+    "@element-plus/icons-vue": "^2.1.0",
     "@vueuse/core": "^10.6.0",
     "eslint": "^8.52.0",
     "prettier": "2",
