@@ -68,7 +68,7 @@ export const useNamespace = (block: string) => {
 
   /**
    * ## 创建块 例如：el-form，为了防止命名冲突，增加了后缀
-   * @description 如果有 后缀，则添加后缀
+   * @remarks 如果有 后缀，则添加后缀
    */
   const b = (blockSuffix = '') =>
     _bem(unref(namespace), block, blockSuffix, '', '')
@@ -131,6 +131,7 @@ export const useNamespace = (block: string) => {
     const state = args.length >= 1 ? args[0] : true
     return name && state ? `${statePrefix}${name}` : ''
   }
+
   return {
     namespace,
     b,
