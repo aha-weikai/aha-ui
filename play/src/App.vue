@@ -10,11 +10,16 @@
     <el-button type="danger" disabled>Danger</el-button>
     <el-button size="large">按钮</el-button>
     <el-button size="small">按钮</el-button>
+    <el-button type="primary" :icon="Edit" />
+    <el-button type="primary">
+      <template #icon> <edit /></template>
+    </el-button>
   </div>
 </template>
 
 <script setup lang="ts">
 import ElIcon from '@aha-ui/components/icon'
+import { Edit } from '@element-plus/icons-vue'
 import '@aha-ui/theme-chalk/src/index.scss'
 </script>
 
