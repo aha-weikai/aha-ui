@@ -1,4 +1,5 @@
 @use 'config';
+@use 'sass:meta';
 
 /// ## 将选择器转化为字符串，并截取指定位置的字符
 /// @param {String} $selector - 选择器
@@ -54,4 +55,18 @@
 @function hitAllSpecialNestRule($selector) {
   @return containsModifier($selector) or containWhenFlag($selector) or
     containPseudoClass($selector);
+}
+
+/// ## 合成变量名
+/// @param {List} $list - 列表
+/// @return {type} - 处理之后的name
+@function joinVarName($list) {
+  $name: '--' + config.$namespace;
+  @each $item in $list {
+    @debug meta.inspect($item);
+    @if $item != '' {
+      $name: $name + '-' + $item;
+    }
+  }
+  @return $name;
 }
