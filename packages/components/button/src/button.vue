@@ -3,8 +3,8 @@
     ref="_ref"
     :class="[
       ns.b(),
-      ns.m(type),
-      ns.m(size),
+      ns.m(_type),
+      ns.m(_size),
       ns.is('disabled', disabled),
       ns.is('plain', plain),
       ns.is('round', round),
@@ -32,14 +32,15 @@
 
 <script setup lang="ts">
 import { useNamespace } from '@aha-ui/hooks'
-import { ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { buttonEmits, buttonProps } from './button'
+import { ButtonGroupContext, buttonGroupContextKey } from '@aha-ui/tokens'
 
 defineOptions({
   name: 'ElButton',
 })
 
-defineProps(buttonProps)
+const props = defineProps(buttonProps)
 
 const emit = defineEmits(buttonEmits)
 
@@ -53,6 +54,16 @@ const ns = useNamespace('button')
 const handleClick = (evt: MouseEvent) => {
   emit('click', evt)
 }
+
+/**
+ * ## 取出组件提供的context
+ */
+const buttonGroupContext = inject<ButtonGroupContext | undefined>(
+  buttonGroupContextKey,
+  undefined
+)
+const _size = computed(() => props.size || buttonGroupContext?.size)
+const _type = computed(() => props.size || buttonGroupContext?.type || '')
 
 /**
  * ## 组件暴露自己的属性以及方法，供外部使用
