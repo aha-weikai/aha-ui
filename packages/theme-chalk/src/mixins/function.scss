@@ -59,14 +59,28 @@
 
 /// ## 合成变量名
 /// @param {List} $list - 列表
-/// @return {type} - 处理之后的name
+/// @return {type} - 处理之后的name: --el-button-text-color
 @function joinVarName($list) {
   $name: '--' + config.$namespace;
   @each $item in $list {
-    @debug meta.inspect($item);
     @if $item != '' {
       $name: $name + '-' + $item;
     }
   }
   @return $name;
+}
+
+///
+/// @param $args 'button', 'text-color'
+/// @output --el-button-text-color
+@function getCssVarName($args...) {
+  @return joinVarName($args);
+}
+
+/// ## 获取的全局的 CSS 变量
+/// @param {type} $args... - 'button', 'text-color'
+/// @return {type} -  var(--el-button-text-color)
+/// 将来生成新的 CSS 变量的值就是继承于全局的 CSS 变量。
+@function getCssVar($args...) {
+  @return var(#{joinVarName($args)});
 }

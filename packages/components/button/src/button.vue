@@ -63,7 +63,7 @@ const buttonGroupContext = inject<ButtonGroupContext | undefined>(
   undefined
 )
 const _size = computed(() => props.size || buttonGroupContext?.size)
-const _type = computed(() => props.size || buttonGroupContext?.type || '')
+const _type = computed(() => props.type || buttonGroupContext?.type || '')
 
 /**
  * ## 组件暴露自己的属性以及方法，供外部使用
