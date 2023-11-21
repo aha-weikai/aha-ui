@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@aha-ui/components": "workspace:^",
+    "@aha-ui/constants": "workspace:^",
     "@aha-ui/theme-chalk": "workspace:^",
     "@aha-ui/tokens": "workspace:^",
     "@aha-ui/utils": "workspace:^",

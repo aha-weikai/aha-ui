@@ -10,6 +10,9 @@ importers:
       '@aha-ui/components':
         specifier: workspace:^
         version: link:packages/components
+      '@aha-ui/constants':
+        specifier: workspace:^
+        version: link:packages/constants
       '@aha-ui/theme-chalk':
         specifier: workspace:^
         version: link:packages/theme-chalk
@@ -116,6 +119,8 @@ importers:
         version: 8.52.0
 
   packages/components: {}
+
+  packages/constants: {}
 
   packages/hooks:
     dependencies:

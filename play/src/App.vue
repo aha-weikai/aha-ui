@@ -21,11 +21,12 @@
     <el-button type="info">Info</el-button>
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
+
+    <el-input />
   </div>
 </template>
 
 <script setup lang="ts">
-import ElIcon from '@aha-ui/components/icon'
 import { Edit } from '@element-plus/icons-vue'
 import '@aha-ui/theme-chalk/src/index.scss'
 </script>
