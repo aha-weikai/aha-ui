@@ -22,13 +22,16 @@
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
 
-    <el-input />
+    <el-input v-model="inputValue" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { Edit } from '@element-plus/icons-vue'
 import '@aha-ui/theme-chalk/src/index.scss'
+import { ref } from 'vue'
+
+const inputValue = ref('')
 </script>
 
 <style></style>

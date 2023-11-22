@@ -27,6 +27,27 @@
         'dark-2',
       ),
     ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'link-text-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+    ),
     'active': (
       'bg-color': (
         'color',

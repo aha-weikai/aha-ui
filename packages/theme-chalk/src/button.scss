@@ -44,4 +44,8 @@
     map.get($button-font-size, 'default'),
     map.get($button-border-radius, 'default')
   );
+
+  &:hover {
+    border-color: getCssVar('border-color-hover');
+  }
 }

@@ -5,7 +5,7 @@
 
 /// ## 定义block
 /// @param {type} $block - 块
-/// @output -
+/// @output - $namespace + '-' + $block-
 @mixin b($block) {
   $B: $namespace + '-' + $block !global;
 
