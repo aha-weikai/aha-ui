@@ -23,6 +23,10 @@
     <el-button type="danger">Danger</el-button>
 
     <el-input v-model="inputValue" />
+
+    <el-form-item>
+      <input type="text" />
+    </el-form-item>
   </div>
 </template>
 

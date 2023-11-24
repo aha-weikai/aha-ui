@@ -3,6 +3,9 @@ import { withInstall, withNoopInstall } from '@aha-ui/utils'
 import Form from './src/form.vue'
 import FormItem from './src/form-item.vue'
 
+export * from './src/form-item'
+export * from './src/form'
+
 export const ElForm = withInstall(Form, { FormItem })
 
 export default ElForm
