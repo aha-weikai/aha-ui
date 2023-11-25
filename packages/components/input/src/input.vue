@@ -27,6 +27,8 @@ import { useNamespace } from '@aha-ui/hooks'
 import { inputEmits, inputProps } from './input'
 import { computed, nextTick, onMounted, shallowRef } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@aha-ui/constants'
+import { formItemContextKey } from '@cobyte-ui/tokens'
+const formItem = inject(formItemContextKey, undefined)
 
 const nsInput = useNamespace('input')
 
