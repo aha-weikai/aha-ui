@@ -23,19 +23,33 @@
     <el-button type="danger">Danger</el-button>
 
     <el-input v-model="inputValue" />
-
-    <el-form-item>
-      <input type="text" />
-    </el-form-item>
+    <el-form>
+      <el-form-item
+        label="用户名："
+        :rules="[
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          {
+            min: 6,
+            max: 10,
+            message: '用户名长度最少6位，且不超过10位',
+            trigger: 'change',
+          },
+        ]"
+      >
+        <el-input type="text" v-model="userData.name" />
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Edit } from '@element-plus/icons-vue'
 import '@aha-ui/theme-chalk/src/index.scss'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 const inputValue = ref('')
+
+const userData = reactive({ name: '' })
 </script>
 
 <style></style>

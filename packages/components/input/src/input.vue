@@ -25,10 +25,9 @@
 <script setup lang="ts">
 import { useNamespace } from '@aha-ui/hooks'
 import { inputEmits, inputProps } from './input'
-import { computed, nextTick, onMounted, shallowRef } from 'vue'
+import { computed, inject, nextTick, onMounted, shallowRef, watch } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@aha-ui/constants'
-import { formItemContextKey } from '@cobyte-ui/tokens'
-const formItem = inject(formItemContextKey, undefined)
+import { FormItemContext, formItemContextKey } from '@aha-ui/tokens'
 
 const nsInput = useNamespace('input')
 
@@ -98,6 +97,23 @@ const handleCompositionEnd = (event: CompositionEvent) => {
     handleInput(event)
   }
 }
+
+const formItem = inject<FormItemContext | undefined>(
+  formItemContextKey,
+  undefined
+)
+const handleBlur = (event: FocusEvent) => {
+  emit('blur', event)
+  formItem?.validate('blur')
+}
+
+watch(
+  () => props.modelValue,
+  () => {
+    formItem?.validate('change')
+    setNativeInputValue()
+  }
+)
 
 onMounted(() => {
   setNativeInputValue()
