@@ -23,18 +23,21 @@
     <el-button type="danger">Danger</el-button>
 
     <el-input v-model="inputValue" />
-    <el-form>
+    <el-form
+      :model="userData"
+      :rules="{
+        name: {
+          min: 6,
+          max: 10,
+          message: '用户名长度最少6位，且不超过10位',
+          trigger: 'change',
+        },
+      }"
+    >
       <el-form-item
+        prop="name"
         label="用户名："
-        :rules="[
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          {
-            min: 6,
-            max: 10,
-            message: '用户名长度最少6位，且不超过10位',
-            trigger: 'change',
-          },
-        ]"
+        :rules="[{ required: true, message: '请输入用户名', trigger: 'blur' }]"
       >
         <el-input type="text" v-model="userData.name" />
       </el-form-item>
@@ -46,10 +49,18 @@
 import { Edit } from '@element-plus/icons-vue'
 import '@aha-ui/theme-chalk/src/index.scss'
 import { reactive, ref } from 'vue'
+import ElIcon from '@aha-ui/components/icon'
 
 const inputValue = ref('')
 
 const userData = reactive({ name: '' })
+
+// const lengthRule = {
+//   min: 6,
+//   max: 10,
+//   message: '用户名长度最少6位，且不超过10位',
+//   trigger: 'change',
+// }
 </script>
 
 <style></style>
