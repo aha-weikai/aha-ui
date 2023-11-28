@@ -14,8 +14,6 @@
 
 <script setup lang="ts">
 import { useNamespace } from '@aha-ui/hooks/use-namespace'
-import { formItemProps } from './form-item'
-import { computed, inject, provide, reactive, ref, toRefs } from 'vue'
 import {
   FormContext,
   FormItemContext,
@@ -26,6 +24,16 @@ import {
 } from '@aha-ui/tokens'
 import { Arrayable } from '@aha-ui/utils'
 import AsyncValidator from 'async-validator'
+import {
+  computed,
+  inject,
+  onMounted,
+  provide,
+  reactive,
+  ref,
+  toRefs,
+} from 'vue'
+import { formItemProps } from './form-item'
 
 defineOptions({ name: 'ElFormItem' })
 
@@ -62,22 +70,6 @@ const _rules = computed(() => {
   return rules
 })
 
-const onValidationFailed = (error: FormValidateFailure) => {
-  const { errors } = error
-
-  validateMessage.value = errors
-    ? errors[0].message ?? `${props.prop} is required`
-    : ''
-
-  formContext?.emit('validate', props.prop!, false, validateMessage.value)
-}
-
-const onValidationSucceeded = () => {
-  validateMessage.value = ''
-  console.log(props.prop)
-  formContext?.emit('validate', props.prop!, true, '')
-}
-
 const validate: FormItemContext['validate'] = async (trigger) => {
   const rules = getFilteredRule(trigger)
   console.log('trigger', trigger, rules)
@@ -85,8 +77,6 @@ const validate: FormItemContext['validate'] = async (trigger) => {
   const modelName = props.prop!
   // 获取form 组件的model属性
   const model = formContext!.model!
-  console.log(modelName, model)
-
   // 声明校验实例对象
   const validator = new AsyncValidator({
     [modelName]: rules,
@@ -109,6 +99,21 @@ const context: FormItemContext = reactive({
 
 provide(formItemContextKey, context)
 
+onMounted(() => {
+  if (props.prop) {
+    formContext?.addField(context)
+  }
+})
+
+/**
+ * ## 将规则校验统一处理成数组
+ * @param rules
+ * @returns rules[]
+ */
+const ensureArray = (rules: Arrayable<FormItemRule> | undefined) => {
+  return rules ? (Array.isArray(rules) ? rules : [rules]) : []
+}
+
 /**
  * ## 获取过滤后的rules
  * @param trigger 触发方式
@@ -128,13 +133,19 @@ const getFilteredRule = (trigger: string) => {
   })
 }
 
-/**
- * ## 将规则校验统一处理成数组
- * @param rules
- * @returns rules[]
- */
-const ensureArray = (rules: Arrayable<FormItemRule> | undefined) => {
-  return rules ? (Array.isArray(rules) ? rules : [rules]) : []
+const onValidationFailed = (error: FormValidateFailure) => {
+  const { errors } = error
+  validateMessage.value = errors
+    ? errors[0].message ?? `${props.prop} is required`
+    : ''
+
+  formContext?.emit('validate', props.prop!, false, validateMessage.value)
+}
+
+const onValidationSucceeded = () => {
+  validateMessage.value = ''
+  console.log(props.prop)
+  formContext?.emit('validate', props.prop!, true, '')
 }
 </script>
 

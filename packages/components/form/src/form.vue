@@ -52,6 +52,11 @@ provide(
 defineExpose({
   validate,
 })
+
+// form 表单校验
+// 需要收集form-item的props.rules
+// 通过 addField ，在form-item挂载完成后，调用此方法，收集props
+// 将验证方法 (validate) 暴露，可以自主进行校验
 </script>
 
 <style></style>
